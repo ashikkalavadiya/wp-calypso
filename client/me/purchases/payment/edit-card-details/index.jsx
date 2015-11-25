@@ -62,10 +62,8 @@ const EditCardDetails = React.createClass( {
 	 * @param fields
 	 */
 	mergeCard( card, fields: {} ) {
-		const { name } = card;
-
 		return extend( {}, fields, {
-			name
+			name: card.name
 		} );
 	},
 
@@ -73,7 +71,7 @@ const EditCardDetails = React.createClass( {
 		const fields = this.mergeCard( this.props.card, formState.createNullFieldValues( this.fieldNames ) );
 
 		this.formStateController = formState.Controller( {
-			initialState: formState.createInitialFormState( fields ),
+			initialFields: fields,
 			onNewState: this.setFormState,
 			validatorFunction: this.validate
 		} );
